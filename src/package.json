@@ -1,0 +1,9 @@
+{
+    "name": "keep_dapr",
+    "version": "1.0.0",
+    "main": "keepDapr.js",
+    "license": "MIT",
+    "scripts": {
+        "start": "node keepDapr"
+    }
+}
