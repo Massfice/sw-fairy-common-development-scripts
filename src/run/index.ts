@@ -2,6 +2,8 @@ import gulp from 'gulp';
 import path from 'path';
 import { exec } from 'child_process';
 
+const rootPath = path.join(__dirname, '..', '..');
+
 const pm2 = (command: string, ecosystemPath: string, flags = '') => {
     exec(`pm2 ${command} ${ecosystemPath}${flags}`, (error, stdout, stderr) => {
         if (error) {
@@ -22,10 +24,11 @@ const pm2 = (command: string, ecosystemPath: string, flags = '') => {
 
 const run = (): Promise<boolean> => {
     const ecosystemPath = path.join(__dirname, 'ecosystem.config.js');
+    const runconfigPath = path.join(rootPath, 'run.config.js');
 
     pm2('start', ecosystemPath);
 
-    const ecosystemWatcher = gulp.watch(ecosystemPath, (done) => {
+    const runConfigWatcher = gulp.watch(runconfigPath, (done) => {
         pm2('restart', ecosystemPath, ' --update-env');
 
         done();
@@ -35,7 +38,7 @@ const run = (): Promise<boolean> => {
         process.on('SIGINT', () => {
             pm2('delete', ecosystemPath);
 
-            ecosystemWatcher.close();
+            runConfigWatcher.close();
             resolve(true);
         });
     });
