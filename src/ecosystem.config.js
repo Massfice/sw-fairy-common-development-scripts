@@ -14,7 +14,7 @@ module.exports = {
             args: `${path.join(__dirname, '..', 'sample')} sampleApp 3000 0 start`,
         },
         {
-            name: 'sampl1App',
+            name: 'sampl2App',
             script: 'exec.js',
             args: `${path.join(__dirname, '..', 'sampl2')} sampl2App 3001 0 start`,
         },

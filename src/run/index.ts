@@ -4,34 +4,38 @@ import { exec } from 'child_process';
 
 import RunOptions from '../types/runOptions';
 
+const pm2 = (command: string, ecosystemPath: string) => {
+    exec(`pm2 ${command} ${ecosystemPath}`, (error, stdout, stderr) => {
+        if (error) {
+            console.error(error);
+
+            throw error;
+        }
+
+        if (stderr) {
+            console.error(stderr);
+
+            throw new Error(stderr);
+        }
+
+        console.log(stdout);
+    });
+};
+
 const run = (options: RunOptions): Promise<boolean> => {
     const ecosystemPath = path.join(options.dirname, 'ecosystem.config.js');
 
-    // exec(`pm2 start ${ecosystemPath}`, (error, stdout, stderr) => {
-    //     if (error) {
-    //         console.error(error);
-
-    //         throw error;
-    //     }
-
-    //     if (stderr) {
-    //         console.error(stderr);
-
-    //         throw new Error(stderr);
-    //     }
-
-    //     console.log(stdout);
-    // });
+    pm2('start', ecosystemPath);
 
     const ecosystemWatcher = gulp.watch(ecosystemPath, (done) => {
-        console.log('Ecosystem changed');
+        pm2('restart', ecosystemPath);
 
         done();
     });
 
     return new Promise<boolean>((resolve) => {
         process.on('SIGINT', () => {
-            console.log('Exited');
+            pm2('delete', ecosystemPath);
 
             ecosystemWatcher.close();
             resolve(true);
