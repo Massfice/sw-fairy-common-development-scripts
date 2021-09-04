@@ -1,0 +1,25 @@
+{
+    "name": "@massfice/sw-fairy-common-development-scripts",
+    "version": "1.0.0",
+    "description": "Common package for developing system. Using typescript, pm2, gulp, etc.",
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Massfice/sw-fairy-common-development-scripts.git"
+    },
+    "keywords": [
+        "gulp",
+        "shinobi",
+        "war",
+        "fairy",
+        "common",
+        "development",
+        "scripts"
+    ],
+    "bugs": {
+        "url": "https://github.com/Massfice/sw-fairy-common-development-scripts/issues"
+    },
+    "homepage": "https://github.com/Massfice/sw-fairy-common-development-scripts#readme",
+    "author": "Massfice",
+    "license": "MIT"
+}
