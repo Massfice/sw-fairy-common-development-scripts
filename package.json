@@ -4,7 +4,8 @@
     "description": "Common package for developing system. Using typescript, pm2, gulp, etc.",
     "main": "index.js",
     "scripts": {
-        "lint": "echo 'Linting'",
+        "lint": "eslint src/**/*.ts",
+        "format": "eslint src/**/*.ts --fix",
         "husky:init": "husky install && husky add .husky/pre-commit 'npm run lint'"
     },
     "repository": {
@@ -27,6 +28,13 @@
     "author": "Massfice",
     "license": "MIT",
     "devDependencies": {
-        "husky": "^7.0.2"
-    }
+        "@typescript-eslint/eslint-plugin": "^4.30.0",
+        "@typescript-eslint/parser": "^4.30.0",
+        "eslint": "^7.32.0",
+        "husky": "^7.0.2",
+        "prettier": "^2.3.2",
+        "ts-node": "^10.2.1",
+        "typescript": "^4.4.2"
+    },
+    "dependencies": {}
 }
