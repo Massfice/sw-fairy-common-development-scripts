@@ -4,8 +4,8 @@ import { exec } from 'child_process';
 
 import RunOptions from '../types/runOptions';
 
-const pm2 = (command: string, ecosystemPath: string) => {
-    exec(`pm2 ${command} ${ecosystemPath}`, (error, stdout, stderr) => {
+const pm2 = (command: string, ecosystemPath: string, flags = '') => {
+    exec(`pm2 ${command} ${ecosystemPath}${flags}`, (error, stdout, stderr) => {
         if (error) {
             console.error(error);
 
@@ -28,7 +28,7 @@ const run = (options: RunOptions): Promise<boolean> => {
     pm2('start', ecosystemPath);
 
     const ecosystemWatcher = gulp.watch(ecosystemPath, (done) => {
-        pm2('restart', ecosystemPath);
+        pm2('restart', ecosystemPath, ' --update-env');
 
         done();
     });
