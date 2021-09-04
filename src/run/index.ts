@@ -2,8 +2,6 @@ import gulp from 'gulp';
 import path from 'path';
 import { exec } from 'child_process';
 
-import RunOptions from '../types/runOptions';
-
 const pm2 = (command: string, ecosystemPath: string, flags = '') => {
     exec(`pm2 ${command} ${ecosystemPath}${flags}`, (error, stdout, stderr) => {
         if (error) {
@@ -22,8 +20,8 @@ const pm2 = (command: string, ecosystemPath: string, flags = '') => {
     });
 };
 
-const run = (options: RunOptions): Promise<boolean> => {
-    const ecosystemPath = path.join(options.dirname, 'ecosystem.config.js');
+const run = (): Promise<boolean> => {
+    const ecosystemPath = path.join(__dirname, 'ecosystem.config.js');
 
     pm2('start', ecosystemPath);
 
