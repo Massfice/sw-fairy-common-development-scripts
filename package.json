@@ -3,6 +3,10 @@
     "version": "1.0.0",
     "description": "Common package for developing system. Using typescript, pm2, gulp, etc.",
     "main": "index.js",
+    "scripts": {
+        "lint": "echo 'Linting'",
+        "husky:init": "husky install && husky add .husky/pre-commit 'npm run lint'"
+    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Massfice/sw-fairy-common-development-scripts.git"
@@ -21,5 +25,8 @@
     },
     "homepage": "https://github.com/Massfice/sw-fairy-common-development-scripts#readme",
     "author": "Massfice",
-    "license": "MIT"
+    "license": "MIT",
+    "devDependencies": {
+        "husky": "^7.0.2"
+    }
 }
