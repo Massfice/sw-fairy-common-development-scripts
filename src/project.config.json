@@ -1,3 +1,4 @@
 {
-    "prefix": "sample"
+    "prefix": "sample",
+    "port": 4000
 }

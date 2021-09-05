@@ -8,15 +8,23 @@ const currentPath = path.relative(rootPath, __dirname);
 const runConfig = require(path.join(rootPath, 'run.config.json'));
 const projectConfig = require('../project.config.json');
 
-const createApp = ({ name, port, environment, dir, command }) => ({
-    name: `${projectConfig.prefix}-${name}`,
-    script: path.join(currentPath, 'exec.js'),
-    args: `${dir} ${name} ${port} 0 ${command}`,
-    env: {
-        ...environment,
-        APP_PORT: port,
-    },
-});
+let portNumber = projectConfig.port;
+
+const createApp = ({ name, environment, dir, command }) => {
+    const app = {
+        name: `${projectConfig.prefix}-${name}`,
+        script: path.join(currentPath, 'exec.js'),
+        args: `${dir} ${name} ${portNumber} 0 ${command}`,
+        env: {
+            ...environment,
+            APP_PORT: portNumber,
+        },
+    };
+
+    portNumber++;
+
+    return app;
+};
 
 const apps = runConfig.map((entry) => createApp(entry));
 
