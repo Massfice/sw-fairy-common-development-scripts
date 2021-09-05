@@ -1,0 +1,10 @@
+{
+    "apps": [
+        {
+            "name": "FILL NAME",
+            "environment": { "CAN_BE": "EMPTY OBJECT", "MUST_BE": "AT LEAST EMPTY OBJECT" },
+            "dir": "FILL RELATIVE PATH",
+            "command": "FILL NPM COMMAND (WITHOUT NPM)"
+        }
+    ]
+}
