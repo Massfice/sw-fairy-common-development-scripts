@@ -11,12 +11,10 @@ const projectConfig = require('../project.config.json');
 let portNumber = projectConfig.port;
 
 const createApp = ({ name, environment, dir, command }) => {
-    const run = !projectConfig.daprEnabled
-        ? `npm run ${command}`
-        : `dapr run --app-id ${name} --app-port ${portNumber} npm run ${command}`;
+    const run = `npm run ${command}`;
 
     const app = {
-        name: `${projectConfig.prefix}-${name}`,
+        name: `${projectConfig.prefix}-${name}-app`,
         script: path.join(currentPath, 'exec.js'),
         args: `${dir} "${run}"`,
         env: {
@@ -25,12 +23,22 @@ const createApp = ({ name, environment, dir, command }) => {
         },
     };
 
+    const apps = [app];
+
+    if (projectConfig.daprEnabled) {
+        apps.push({
+            name: `${projectConfig.prefix}-${name}-dapr`,
+            script: path.join(currentPath, 'exec.js'),
+            args: `${dir} "dapr run --app-id ${name} --app-port ${portNumber}"`,
+        });
+    }
+
     portNumber++;
 
-    return app;
+    return apps;
 };
 
-const apps = runConfig.apps.map((entry) => createApp(entry));
+const apps = runConfig.apps.flatMap((entry) => createApp(entry));
 
 if (projectConfig.daprEnabled) {
     apps.unshift({

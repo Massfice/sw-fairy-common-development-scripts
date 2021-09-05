@@ -4,7 +4,7 @@ declare module 'run.config.json' {
         environment: Record<string, string>;
         dir: string;
         command: string;
-        useHardRestart?: boolean;
+        useReload?: boolean;
     }
 
     export const apps: App[];

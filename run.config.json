@@ -30,7 +30,7 @@
             "environment": { "TEST": "TEST_APP_3_UPDATED_UPDATED_UPDATED_UPDATED_XD" },
             "dir": "./sample",
             "command": "start",
-            "useHardRestart": true
+            "useReload": true
         }
     ]
 }
