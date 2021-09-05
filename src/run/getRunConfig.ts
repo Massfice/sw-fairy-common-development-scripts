@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-import runConfig from '../../run.config';
+import * as runConfig from '../../run.config';
 
 const getRunConfig = (): runConfig.App[] => {
     const config = fs.readFileSync(path.resolve(__dirname, '..', '..', 'run.config.json')).toString();
