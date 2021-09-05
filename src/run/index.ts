@@ -3,9 +3,11 @@ import path from 'path';
 import { FSWatcher } from 'fs';
 import { exec } from 'child_process';
 
-import projectConfig from '../project.config';
 import * as runConfig from '../../run.config';
 import getRunConfig from './getRunConfig';
+import getProjectConfig from './getProjectConfig';
+
+const projectConfig = getProjectConfig();
 
 const rootPath = path.join(__dirname, '..', '..');
 
