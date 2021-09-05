@@ -1,25 +1,37 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const spawn = require('cross-spawn');
 
-const [dir, appId, appPort, daprPort, command] = process.argv.slice(2);
+const [dapr, dir, appId, appPort, daprPort, command] = process.argv.slice(2);
 
-const commands = ['run', '--app-id', appId];
+const strategies = {
+    disabled: () => {
+        const commands = ['run', command];
 
-if (parseInt(appPort) !== 0) {
-    commands.push('--app-port', appPort);
-}
+        spawn('npm', commands, {
+            cwd: dir,
+            stdio: 'inherit',
+        });
+    },
+    enabled: () => {
+        const commands = ['run', '--app-id', appId];
 
-if (parseInt(daprPort) !== 0) {
-    commands.push('--dapr-http-port', daprPort);
-}
+        if (parseInt(appPort) !== 0) {
+            commands.push('--app-port', appPort);
+        }
 
-if (command !== '') {
-    commands.push('npm');
-    commands.push('run');
-    commands.push(command);
-}
+        if (parseInt(daprPort) !== 0) {
+            commands.push('--dapr-http-port', daprPort);
+        }
 
-spawn('dapr', commands, {
-    cwd: dir,
-    stdio: 'inherit',
-});
+        commands.push('npm');
+        commands.push('run');
+        commands.push(command);
+
+        spawn('dapr', commands, {
+            cwd: dir,
+            stdio: 'inherit',
+        });
+    },
+};
+
+strategies[dapr]();

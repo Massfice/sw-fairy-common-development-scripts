@@ -14,7 +14,7 @@ const createApp = ({ name, environment, dir, command }) => {
     const app = {
         name: `${projectConfig.prefix}-${name}`,
         script: path.join(currentPath, 'exec.js'),
-        args: `${dir} ${name} ${portNumber} 0 ${command}`,
+        args: `${projectConfig.daprEnabled ? 'enabled' : 'disabled'} ${dir} ${name} ${portNumber} 0 ${command}`,
         env: {
             ...environment,
             APP_PORT: portNumber,
@@ -28,13 +28,14 @@ const createApp = ({ name, environment, dir, command }) => {
 
 const apps = runConfig.map((entry) => createApp(entry));
 
+if (projectConfig.daprEnabled) {
+    apps.unshift({
+        name: 'dapr',
+        script: path.join(currentPath, 'exec.js'),
+        args: `enabled ${rootPath} dapr 0 3500 keepDapr`,
+    });
+}
+
 module.exports = {
-    apps: [
-        {
-            name: 'dapr',
-            script: path.join(currentPath, 'exec.js'),
-            args: `${rootPath} dapr 0 3500 keepDapr`,
-        },
-        ...apps,
-    ],
+    apps,
 };
