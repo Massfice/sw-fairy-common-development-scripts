@@ -1,5 +1,6 @@
 import gulp from 'gulp';
 import path from 'path';
+import { FSWatcher } from 'fs';
 import { exec } from 'child_process';
 
 import projectConfig from '../project.config';
@@ -43,8 +44,24 @@ const run = (): Promise<boolean> => {
         done();
     });
 
+    const hardRestartWatchers: FSWatcher[] = [];
+
     runConfig.apps.forEach((app: runConfig.App) => {
-        console.log(app);
+        if (!app.useHardRestart) {
+            return;
+        }
+
+        const applyHardRestart = () => {
+            const hardRestartWatcher = gulp.watch(path.join(rootPath, app.dir), (done) => {
+                pm2('restart', `${projectConfig.prefix}-${app.name}`);
+
+                done();
+            });
+
+            hardRestartWatchers.push(hardRestartWatcher);
+        };
+
+        applyHardRestart();
     });
 
     return new Promise<boolean>((resolve) => {
@@ -52,6 +69,9 @@ const run = (): Promise<boolean> => {
             pm2('delete', ecosystemPath);
 
             runConfigWatcher.close();
+
+            hardRestartWatchers.forEach((hardRestartWatcher) => hardRestartWatcher.close());
+
             resolve(true);
         });
     });

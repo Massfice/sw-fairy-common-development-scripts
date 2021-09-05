@@ -29,7 +29,8 @@
             "name": "sampl6App",
             "environment": { "TEST": "TEST_APP_3_UPDATED_UPDATED_UPDATED_UPDATED_XD" },
             "dir": "./sample",
-            "command": "start"
+            "command": "start",
+            "useHardRestart": true
         }
     ]
 }
