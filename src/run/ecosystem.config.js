@@ -5,10 +5,11 @@ const path = require('path');
 const rootPath = path.join(__dirname, '..', '..');
 const currentPath = path.relative(rootPath, __dirname);
 
-const runConfig = require(path.join(rootPath, 'run.config.js'));
+const runConfig = require(path.join(rootPath, 'run.config.json'));
+const projectConfig = require('../project.config.json');
 
 const createApp = ({ name, port, environment, dir, command }) => ({
-    name,
+    name: `${projectConfig.prefix}-${name}`,
     script: path.join(currentPath, 'exec.js'),
     args: `${dir} ${name} ${port} 0 ${command}`,
     env: {
