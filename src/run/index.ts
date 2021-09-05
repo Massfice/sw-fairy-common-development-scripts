@@ -3,6 +3,7 @@ import path from 'path';
 import { exec } from 'child_process';
 
 import projectConfig from '../project.config';
+import runConfig from '../../run.config';
 
 const rootPath = path.join(__dirname, '..', '..');
 
@@ -40,6 +41,10 @@ const run = (): Promise<boolean> => {
         });
 
         done();
+    });
+
+    runConfig.apps.forEach((app: runConfig.App) => {
+        console.log(app);
     });
 
     return new Promise<boolean>((resolve) => {

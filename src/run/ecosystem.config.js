@@ -30,7 +30,7 @@ const createApp = ({ name, environment, dir, command }) => {
     return app;
 };
 
-const apps = runConfig.map((entry) => createApp(entry));
+const apps = runConfig.apps.map((entry) => createApp(entry));
 
 if (projectConfig.daprEnabled) {
     apps.unshift({

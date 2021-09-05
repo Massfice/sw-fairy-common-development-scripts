@@ -1,27 +1,35 @@
-[
-    { "name": "sampleApp", "environment": { "TEST": "TEST_APP" }, "dir": "./sample", "command": "start" },
-    {
-        "name": "sampl2App",
-        "environment": { "TEST": "TEST_APP_2_UPDATED" },
-        "dir": "./sample",
-        "command": "start"
-    },
-    {
-        "name": "sampl3App",
-        "environment": { "TEST": "TEST_APP_3_UPDATED_UPDATED" },
-        "dir": "./sample",
-        "command": "start"
-    },
-    {
-        "name": "sampl4App",
-        "environment": { "TEST": "TEST_APP_3_UPDATED_UPDATED_UPDATED" },
-        "dir": "./sample",
-        "command": "start"
-    },
-    {
-        "name": "sampl5App",
-        "environment": { "TEST": "TEST_APP_3_UPDATED_UPDATED_UPDATED_UPDATED" },
-        "dir": "./sample",
-        "command": "start"
-    }
-]
+{
+    "apps": [
+        { "name": "sampleApp", "environment": { "TEST": "TEST_APP" }, "dir": "./sample", "command": "start" },
+        {
+            "name": "sampl2App",
+            "environment": { "TEST": "TEST_APP_2_UPDATED" },
+            "dir": "./sample",
+            "command": "start"
+        },
+        {
+            "name": "sampl3App",
+            "environment": { "TEST": "TEST_APP_3_UPDATED_UPDATED" },
+            "dir": "./sample",
+            "command": "start"
+        },
+        {
+            "name": "sampl4App",
+            "environment": { "TEST": "TEST_APP_3_UPDATED_UPDATED_UPDATED" },
+            "dir": "./sample",
+            "command": "start"
+        },
+        {
+            "name": "sampl5App",
+            "environment": { "TEST": "TEST_APP_3_UPDATED_UPDATED_UPDATED_UPDATED" },
+            "dir": "./sample",
+            "command": "start"
+        },
+        {
+            "name": "sampl6App",
+            "environment": { "TEST": "TEST_APP_3_UPDATED_UPDATED_UPDATED_UPDATED_XD" },
+            "dir": "./sample",
+            "command": "start"
+        }
+    ]
+}
