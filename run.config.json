@@ -2,7 +2,7 @@
     "apps": [
         {
             "name": "App1",
-            "environment": { "default": { "TEST": "App1" } },
+            "environment": { "default": { "TEST": "App1" }, "custom": { "TEST": "Custom App1" } },
             "dir": "./sample",
             "resolverPath": "./sample/resolver",
             "style": {
@@ -16,7 +16,7 @@
         },
         {
             "name": "App2",
-            "environment": { "default": { "TEST": "App2" } },
+            "environment": { "default": { "TEST": "App2" }, "custom": { "TEST": "Custom App2" } },
             "dir": "./sample",
             "resolverPath": "./sample/resolver",
             "style": {
@@ -30,7 +30,7 @@
         },
         {
             "name": "App3",
-            "environment": { "default": { "TEST": "App3" } },
+            "environment": { "default": { "TEST": "App3" }, "custom": { "TEST": "Custom App3" } },
             "dir": "./sample",
             "resolverPath": "./sample/resolver",
             "style": {
@@ -44,7 +44,7 @@
         },
         {
             "name": "App4",
-            "environment": { "default": { "TEST": "App4" } },
+            "environment": { "default": { "TEST": "App4" }, "custom": { "TEST": "Custom App4" } },
             "dir": "./sample",
             "resolverPath": "./sample/resolver",
             "style": {
@@ -58,7 +58,7 @@
         },
         {
             "name": "App5",
-            "environment": { "default": { "TEST": "App5" } },
+            "environment": { "default": { "TEST": "App5" }, "custom": { "TEST": "Custom App5" } },
             "dir": "./sample",
             "resolverPath": "./sample/resolver",
             "style": {
@@ -72,7 +72,7 @@
         },
         {
             "name": "App6",
-            "environment": { "default": { "TEST": "App6" } },
+            "environment": { "default": { "TEST": "App6" }, "custom": { "TEST": "Custom App6" } },
             "dir": "./sample",
             "resolverPath": "./sample/resolver",
             "style": {
