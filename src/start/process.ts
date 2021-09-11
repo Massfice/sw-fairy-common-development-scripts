@@ -4,7 +4,7 @@ import { SubProcess } from 'teen_process';
 import path from 'path';
 
 import { App } from '../../run.config';
-import { projectConfig } from '../../project.config';
+import { ProjectConfig } from '../../project.config';
 import { loadResolver } from './resolver';
 
 enum Event {
@@ -22,7 +22,7 @@ const rootPath = path.join(__dirname, '..', '..');
 let appPort: number;
 const appPorts: { [name: string]: number } = {};
 
-export const exec = async (app: App, config: projectConfig): Promise<{ name: string; process: SubProcess }> => {
+export const exec = async (app: App, config: ProjectConfig): Promise<{ name: string; process: SubProcess }> => {
     if (!appPort) {
         appPort = config.port;
     }

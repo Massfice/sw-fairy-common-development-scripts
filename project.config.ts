@@ -1,3 +1,3 @@
-export interface projectConfig {
+export interface ProjectConfig {
     port: number;
 }

@@ -2,19 +2,19 @@ import fs from 'fs';
 import path from 'path';
 import { promisify } from 'util';
 
-import { projectConfig } from '../../project.config';
-import { runConfig } from '../../run.config';
+import { ProjectConfig } from '../../project.config';
+import { RunConfig } from '../../run.config';
 
 export interface Config {
-    project?: projectConfig;
-    run?: runConfig;
+    project?: ProjectConfig;
+    run?: RunConfig;
 }
 
 export class ConfigLoader {
     static init(): Promise<Config> {
         return Promise.all([
-            ConfigLoader.load<projectConfig>('../../project.config.json'),
-            ConfigLoader.load<runConfig>('../../run.config.json'),
+            ConfigLoader.load<ProjectConfig>('../../project.config.json'),
+            ConfigLoader.load<RunConfig>('../../run.config.json'),
         ]).then(([projectConfig, runConfig]) => {
             return {
                 project: projectConfig,

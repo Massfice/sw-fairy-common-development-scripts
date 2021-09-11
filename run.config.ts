@@ -5,6 +5,6 @@ export interface App {
     resolverPath: string;
 }
 
-export interface runConfig {
+export interface RunConfig {
     apps: App[];
 }

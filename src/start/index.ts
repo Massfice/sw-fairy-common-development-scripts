@@ -7,9 +7,9 @@ import path from 'path';
 import kill from 'tree-kill';
 
 import { ConfigLoader } from '../config/config';
-import { projectConfig } from '../../project.config';
+import { ProjectConfig } from '../../project.config';
 import { exec } from './process';
-import { App, runConfig } from '../../run.config';
+import { App, RunConfig } from '../../run.config';
 
 type Difference = {
     added: App[];
@@ -17,7 +17,7 @@ type Difference = {
     removed: string[];
 };
 
-const calculateDifference = (prevRunConfig: runConfig, runConfig: runConfig): Difference => {
+const calculateDifference = (prevRunConfig: RunConfig, runConfig: RunConfig): Difference => {
     const prevRunConfigNames = prevRunConfig.apps.map((app) => app.name);
     const runConfigNames = runConfig.apps.map((app) => app.name);
 
@@ -58,7 +58,7 @@ const stopApp = (name: string, subProcess: SubProcess): Promise<void> => {
 const runConfigPath = path.join(__dirname, '..', '..', 'run.config.json');
 
 const start = async (): Promise<void> => {
-    let prevRunConfig: runConfig = { apps: [] };
+    let prevRunConfig: RunConfig = { apps: [] };
     let subProcesses: { name: string; process: SubProcess }[] = [];
 
     const start = async () => {
@@ -68,7 +68,7 @@ const start = async (): Promise<void> => {
             throw new Error('Something went wrong');
         }
 
-        const difference = calculateDifference(prevRunConfig, config.run as runConfig);
+        const difference = calculateDifference(prevRunConfig, config.run as RunConfig);
 
         for (const subProcess of subProcesses) {
             if (
@@ -83,7 +83,7 @@ const start = async (): Promise<void> => {
 
         subProcesses = await Promise.all(
             difference.added.concat(difference.modified).map((app) => {
-                return exec(app, config.project as projectConfig);
+                return exec(app, config.project as ProjectConfig);
             }),
         );
 
