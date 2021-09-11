@@ -3,7 +3,7 @@ import path from 'path';
 import EventEmiter from 'events';
 import { promisify } from 'util';
 
-import { projectConfig } from '../project.config';
+import { projectConfig } from '../../project.config';
 import { runConfig } from '../../run.config';
 
 export interface Config {
@@ -33,7 +33,7 @@ export class ConfigLoader {
         });
 
         const loadProjectConfig = async () => {
-            config.project = await ConfigLoader.load<projectConfig>('../project.config.json');
+            config.project = await ConfigLoader.load<projectConfig>('../../project.config.json');
             event.emit(EVENT_PROJECT_CONFIG);
         };
 

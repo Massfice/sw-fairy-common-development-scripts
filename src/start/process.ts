@@ -4,7 +4,7 @@ import { SubProcess } from 'teen_process';
 import path from 'path';
 
 import { App } from '../../run.config';
-import { projectConfig } from '../project.config';
+import { projectConfig } from '../../project.config';
 import { loadResolver } from './resolver';
 
 enum Event {

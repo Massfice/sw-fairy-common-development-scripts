@@ -7,7 +7,7 @@ import path from 'path';
 import kill from 'tree-kill';
 
 import { ConfigLoader } from '../config/config';
-import { projectConfig } from '../project.config';
+import { projectConfig } from '../../project.config';
 import { exec } from './process';
 import { App, runConfig } from '../../run.config';
 

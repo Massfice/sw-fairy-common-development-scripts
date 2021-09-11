@@ -4,43 +4,36 @@
             "name": "sampleApp",
             "environment": { "TEST": "TEST_APP_2" },
             "dir": "./sample",
-            "command": ["npm", "start"],
             "resolverPath": "./sample/resolver"
         },
         {
             "name": "sampl2App",
             "environment": { "TEST": "TEST_APP_2_UPDATED" },
             "dir": "./sample",
-            "command": ["npm", "start"],
             "resolverPath": "./sample/resolver"
         },
         {
             "name": "sampl3App",
             "environment": { "TEST": "TEST_APP_3_UPDATED_UPDATED" },
             "dir": "./sample",
-            "command": ["npm", "start"],
             "resolverPath": "./sample/resolver"
         },
         {
             "name": "sampl4App",
             "environment": { "TEST": "TEST_APP_3_UPDATED_UPDATED_UPDATED" },
             "dir": "./sample",
-            "command": ["npm", "start"],
             "resolverPath": "./sample/resolver"
         },
         {
             "name": "sampl5App",
             "environment": { "TEST": "TEST_APP_3_UPDATED_UPDATED_UPDATED_UPDATED" },
             "dir": "./sample",
-            "command": ["npm", "start"],
             "resolverPath": "./sample/resolver"
         },
         {
             "name": "sampl6App",
             "environment": { "TEST": "TEST_APP_3_UPDATED_UPDATED_UPDATED_UPDATED_XD" },
             "dir": "./sample",
-            "command": ["npm", "start"],
-            "useReload": true,
             "resolverPath": "./sample/resolver"
         }
     ]
