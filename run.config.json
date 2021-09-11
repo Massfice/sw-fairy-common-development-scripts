@@ -4,37 +4,67 @@
             "name": "sampleApp",
             "environment": { "TEST": "TEST_APP_2" },
             "dir": "./sample",
-            "resolverPath": "./sample/resolver"
+            "resolverPath": "./sample/resolver",
+            "style": {
+                "bold": true,
+                "italic": true,
+                "color": "red"
+            }
         },
         {
             "name": "sampl2App",
             "environment": { "TEST": "TEST_APP_2_UPDATED" },
             "dir": "./sample",
-            "resolverPath": "./sample/resolver"
+            "resolverPath": "./sample/resolver",
+            "style": {
+                "bold": true,
+                "italic": true,
+                "color": "yellow"
+            }
         },
         {
             "name": "sampl3App",
             "environment": { "TEST": "TEST_APP_3_UPDATED_UPDATED" },
             "dir": "./sample",
-            "resolverPath": "./sample/resolver"
+            "resolverPath": "./sample/resolver",
+            "style": {
+                "bold": true,
+                "italic": true,
+                "color": "orange"
+            }
         },
         {
             "name": "sampl4App",
             "environment": { "TEST": "TEST_APP_3_UPDATED_UPDATED_UPDATED" },
             "dir": "./sample",
-            "resolverPath": "./sample/resolver"
+            "resolverPath": "./sample/resolver",
+            "style": {
+                "bold": true,
+                "italic": true,
+                "color": "green"
+            }
         },
         {
             "name": "sampl5App",
             "environment": { "TEST": "TEST_APP_3_UPDATED_UPDATED_UPDATED_UPDATED" },
             "dir": "./sample",
-            "resolverPath": "./sample/resolver"
+            "resolverPath": "./sample/resolver",
+            "style": {
+                "bold": true,
+                "italic": true,
+                "color": "blue"
+            }
         },
         {
             "name": "sampl6App",
             "environment": { "TEST": "TEST_APP_3_UPDATED_UPDATED_UPDATED_UPDATED_XD" },
             "dir": "./sample",
-            "resolverPath": "./sample/resolver"
+            "resolverPath": "./sample/resolver",
+            "style": {
+                "bold": true,
+                "italic": true,
+                "color": "cyan"
+            }
         }
     ]
 }

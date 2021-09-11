@@ -6,6 +6,7 @@ import path from 'path';
 import { App } from '../../run.config';
 import { ProjectConfig } from '../../project.config';
 import { loadResolver } from './resolver';
+import styler from './styler';
 
 enum Event {
     exit = 'exit',
@@ -47,12 +48,12 @@ export const exec = async (app: App, config: ProjectConfig): Promise<{ name: str
     });
 
     subProcess.on(Event['stream-line'], (line: string) => {
-        console.log(line);
+        console.log(`${styler('[', app.name, app.style ? app.style : {}, ']')} ${line}`);
     });
 
     appPort++;
 
-    console.log(`Starting ${app.name}`);
+    console.log(styler('Starting', app.name, app.style ? app.style : {}));
     await subProcess.start();
 
     return { name: app.name, process: subProcess };

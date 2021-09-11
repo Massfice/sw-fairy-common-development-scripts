@@ -9,7 +9,8 @@ import kill from 'tree-kill';
 import { ConfigLoader } from '../config/config';
 import { ProjectConfig } from '../../project.config';
 import { exec } from './process';
-import { App, RunConfig } from '../../run.config';
+import { App, RunConfig, Style } from '../../run.config';
+import styler from './styler';
 
 type Difference = {
     added: App[];
@@ -45,8 +46,8 @@ const calculateDifference = (prevRunConfig: RunConfig, runConfig: RunConfig): Di
     };
 };
 
-const stopApp = (name: string, subProcess: SubProcess): Promise<void> => {
-    console.log(`Stopping ${name}`);
+const stopApp = (name: string, style: Style, subProcess: SubProcess): Promise<void> => {
+    console.log(styler('Stopping', name, style));
 
     return new Promise<void>((resolve) => {
         kill(subProcess.proc.pid, () => {
@@ -77,7 +78,11 @@ const start = async (): Promise<void> => {
                     .concat(difference.removed)
                     .includes(subProcess.name)
             ) {
-                await stopApp(subProcess.name, subProcess.process);
+                const app = config.run.apps.find((app) => app.name === subProcess.name);
+
+                const style = app && app.style ? app.style : {};
+
+                await stopApp(subProcess.name, style, subProcess.process);
             }
         }
 
@@ -100,7 +105,11 @@ const start = async (): Promise<void> => {
     return new Promise<void>((resolve) => {
         process.on('SIGINT', async () => {
             for (const subProcess of subProcesses) {
-                await stopApp(subProcess.name, subProcess.process);
+                const app = prevRunConfig.apps.find((app) => app.name === subProcess.name);
+
+                const style = app && app.style ? app.style : {};
+
+                await stopApp(subProcess.name, style, subProcess.process);
             }
 
             runConfigWatcher.close();
