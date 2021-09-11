@@ -29,6 +29,7 @@
     "author": "Massfice",
     "license": "MIT",
     "devDependencies": {
+        "@types/forever-monitor": "^1.7.6",
         "@types/gulp": "^4.0.9",
         "@typescript-eslint/eslint-plugin": "^4.30.0",
         "@typescript-eslint/parser": "^4.30.0",
@@ -40,6 +41,7 @@
     },
     "dependencies": {
         "gulp": "^4.0.2",
-        "shelljs": "^0.8.4"
+        "shelljs": "^0.8.4",
+        "teen_process": "^1.16.0"
     }
 }

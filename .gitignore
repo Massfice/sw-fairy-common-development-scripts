@@ -4,3 +4,4 @@ yarn.lock
 .husky
 .env 
 .npmrc
+yarn-error.log
