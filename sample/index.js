@@ -3,6 +3,8 @@ const express = require('express');
 const app = express();
 
 app.get('/', (req, res) => {
+    console.log('Sample App');
+
     return res.send({ status: 'Sample app running', test: process.env.TEST });
 });
 
