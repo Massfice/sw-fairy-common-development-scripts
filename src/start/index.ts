@@ -10,7 +10,7 @@ import { ConfigLoader } from '../config/config';
 import { ProjectConfig } from '../../project.config';
 import { exec } from './process';
 import { App, RunConfig, Style } from '../../run.config';
-import styler from './styler';
+import styler from '../styler/styler';
 
 type Difference = {
     added: App[];

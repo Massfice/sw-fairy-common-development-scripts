@@ -6,7 +6,7 @@ import path from 'path';
 import { App } from '../../run.config';
 import { ProjectConfig } from '../../project.config';
 import { loadResolver } from './resolver';
-import styler from './styler';
+import styler from '../styler/styler';
 
 enum Event {
     exit = 'exit',
