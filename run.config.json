@@ -1,8 +1,8 @@
 {
     "apps": [
         {
-            "name": "sampleApp",
-            "environment": { "TEST": "TEST_APP_2" },
+            "name": "App1",
+            "environment": { "default": { "TEST": "App1" } },
             "dir": "./sample",
             "resolverPath": "./sample/resolver",
             "style": {
@@ -15,8 +15,8 @@
             }
         },
         {
-            "name": "sampl2App",
-            "environment": { "TEST": "TEST_APP_2_UPDATED" },
+            "name": "App2",
+            "environment": { "default": { "TEST": "App2" } },
             "dir": "./sample",
             "resolverPath": "./sample/resolver",
             "style": {
@@ -29,8 +29,8 @@
             }
         },
         {
-            "name": "sampl3App",
-            "environment": { "TEST": "TEST_APP_3_UPDATED_UPDATED" },
+            "name": "App3",
+            "environment": { "default": { "TEST": "App3" } },
             "dir": "./sample",
             "resolverPath": "./sample/resolver",
             "style": {
@@ -43,8 +43,8 @@
             }
         },
         {
-            "name": "sampl4App",
-            "environment": { "TEST": "TEST_APP_3_UPDATED_UPDATED_UPDATED" },
+            "name": "App4",
+            "environment": { "default": { "TEST": "App4" } },
             "dir": "./sample",
             "resolverPath": "./sample/resolver",
             "style": {
@@ -57,8 +57,8 @@
             }
         },
         {
-            "name": "sampl5App",
-            "environment": { "TEST": "TEST_APP_3_UPDATED_UPDATED_UPDATED_UPDATED" },
+            "name": "App5",
+            "environment": { "default": { "TEST": "App5" } },
             "dir": "./sample",
             "resolverPath": "./sample/resolver",
             "style": {
@@ -71,8 +71,8 @@
             }
         },
         {
-            "name": "sampl6App",
-            "environment": { "TEST": "TEST_APP_3_UPDATED_UPDATED_UPDATED_UPDATED_XD" },
+            "name": "App6",
+            "environment": { "default": { "TEST": "App6" } },
             "dir": "./sample",
             "resolverPath": "./sample/resolver",
             "style": {

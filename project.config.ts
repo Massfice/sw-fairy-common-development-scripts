@@ -1,3 +1,3 @@
 export interface ProjectConfig {
-    port: number;
+    [mode: string]: { port: number };
 }

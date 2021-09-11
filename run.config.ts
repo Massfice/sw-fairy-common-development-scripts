@@ -9,7 +9,7 @@ export interface Style {
 
 export interface App {
     name: string;
-    environment: Record<string, string>;
+    environment: { [mode: string]: { env: string | number } };
     dir: string;
     resolverPath: string;
     style?: Style;

@@ -58,7 +58,7 @@ const stopApp = (name: string, style: Style, subProcess: SubProcess): Promise<vo
 
 const runConfigPath = path.join(__dirname, '..', '..', 'run.config.json');
 
-const start = async (): Promise<void> => {
+const start = async (mode = 'default'): Promise<void> => {
     let prevRunConfig: RunConfig = { apps: [] };
     let subProcesses: { name: string; process: SubProcess }[] = [];
 
@@ -88,7 +88,7 @@ const start = async (): Promise<void> => {
 
         subProcesses = await Promise.all(
             difference.added.concat(difference.modified).map((app) => {
-                return exec(app, config.project as ProjectConfig);
+                return exec(app, config.project as ProjectConfig, mode);
             }),
         );
 

@@ -23,9 +23,13 @@ const rootPath = path.join(__dirname, '..', '..');
 let appPort: number;
 const appPorts: { [name: string]: number } = {};
 
-export const exec = async (app: App, config: ProjectConfig): Promise<{ name: string; process: SubProcess }> => {
+export const exec = async (
+    app: App,
+    config: ProjectConfig,
+    mode: string,
+): Promise<{ name: string; process: SubProcess }> => {
     if (!appPort) {
-        appPort = config.port;
+        appPort = config[mode].port;
     }
 
     const resolverPath = path.relative(__dirname, path.join(rootPath, app.resolverPath));
@@ -33,7 +37,7 @@ export const exec = async (app: App, config: ProjectConfig): Promise<{ name: str
 
     const providedPort = appPorts[app.name] || appPort;
 
-    const { command, environment = {} } = resolver(app.name, providedPort, app.environment);
+    const { command, environment = {} } = resolver(app.name, providedPort, app.environment[mode]);
 
     appPorts[app.name] = providedPort;
 
