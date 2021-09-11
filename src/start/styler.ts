@@ -30,11 +30,11 @@ const styler = (prefix: string, appName: string, style: Style, suffix = ''): str
     }
 
     if (style.bg && style.bg.startsWith('#')) {
-        styleArray.push(`bgHex('${style.color}')`);
+        styleArray.push(`bgHex('${style.bg}')`);
     }
 
     if (style.bg && !style.bg.startsWith('#')) {
-        styleArray.push(`bgKeyword('${style.color}')`);
+        styleArray.push(`bgKeyword('${style.bg}')`);
     }
 
     const styleString = styleArray.length > 0 ? styleArray.join('.') : '';
