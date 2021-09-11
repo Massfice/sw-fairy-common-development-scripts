@@ -12,6 +12,8 @@ declare module 'teen_process' {
     type Callback = (prop1: string, props2?: string) => void;
 
     export class SubProcess {
+        proc: { pid: number };
+
         constructor(
             command: string,
             args: string[],

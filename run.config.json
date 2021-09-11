@@ -2,7 +2,7 @@
     "apps": [
         {
             "name": "sampleApp",
-            "environment": { "TEST": "TEST_APP" },
+            "environment": { "TEST": "TEST_APP_2" },
             "dir": "./sample",
             "command": ["npm", "start"],
             "resolverPath": "./sample/resolver"
