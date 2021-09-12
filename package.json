@@ -3,6 +3,9 @@
     "version": "1.0.0",
     "description": "Common package for developing system. Using typescript, teen_process, gulp, etc.",
     "main": "src/gulpfile.ts",
+    "bin": {
+        "sw-fairy-dev": "./templates/sw-fairy-dev/src/src/cli.js"
+    },
     "scripts": {
         "build": "tsc --build ts.config.json",
         "lint": "eslint src/**/*.ts",
