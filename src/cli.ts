@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import path from 'path';
 
 import spawn from './spawn';
@@ -12,7 +14,7 @@ const cli = () => {
     }
 
     const destinationDir = path.join(callerDir, destination);
-    const templateDir = path.join(__dirname, '..', 'templates', 'sample');
+    const templateDir = path.join(__dirname, '..', '..');
 
     const done = () => console.log('Done');
 

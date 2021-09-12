@@ -21,7 +21,7 @@ const createJSONFile = (filename, destinationDir, obj) => {
     return stream.pipe(gulp.dest(destinationDir));
 };
 
-const createRunConfig = async (templateDir, destinationDir) => {
+const createRunConfig = (templateDir, destinationDir) => {
     return createJSONFile('run.config.json', destinationDir, {
         environment: { default: {} },
         apps: [
@@ -43,7 +43,7 @@ const createRunConfig = async (templateDir, destinationDir) => {
     });
 };
 
-const createProjectConfig = async (templateDir, destinationDir) => {
+const createProjectConfig = (templateDir, destinationDir) => {
     return createJSONFile('project.config.json', destinationDir, {
         default: {
             port: 1000,
@@ -51,4 +51,10 @@ const createProjectConfig = async (templateDir, destinationDir) => {
     });
 };
 
-module.exports = [createRunConfig, createProjectConfig];
+const createTemplateDir = (templateDir, destinationDir) => {
+    console.log(chalk`{keyword('green') Creating} {bold.keyword('green') template} {keyword('green') directory...}`);
+
+    return gulp.src('*.*', { read: false }).pipe(gulp.dest(`${destinationDir}/templates`));
+};
+
+module.exports = [createRunConfig, createProjectConfig, createTemplateDir];
