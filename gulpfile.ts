@@ -1,16 +1,6 @@
-import gulp from 'gulp';
+import { deployPackage, configs } from '@massfice/sw-fairy-common-deploy-scripts';
 
-import _start from './src/start';
-import yargsMaker from './src/start/yargs';
+const config = configs.package(__dirname);
+const deploy = deployPackage(config);
 
-const start = gulp.series(async () => {
-    const { mode } = await yargsMaker();
-
-    return _start(mode);
-});
-
-start.flags = {
-    '--mode': 'mode allows to switch environment variables and project config',
-};
-
-export { start };
+export { deploy };

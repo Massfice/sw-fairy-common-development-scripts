@@ -18,7 +18,7 @@ const cli = () => {
 
     const done = () => console.log('Done');
 
-    spawn({ destinationDir, templateDir, moveGulpfile: false })(done);
+    spawn({ destinationDir, templateDir, moveGulpfile: false, onlyProduction: true })(done);
 };
 
 cli();

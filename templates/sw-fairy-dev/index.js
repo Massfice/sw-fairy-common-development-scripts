@@ -2,6 +2,7 @@ const Vinyl = require('vinyl');
 const gulp = require('gulp');
 const rename = require('gulp-rename');
 const chalk = require('chalk');
+const fs = require('fs');
 
 const createJSONFile = (filename, destinationDir, obj) => {
     console.log(chalk`{keyword('green') Creating} {bold.keyword('green') ${filename}} {keyword('green') file...}`);
@@ -55,7 +56,11 @@ const createProjectConfig = (templateDir, destinationDir) => {
 const createTemplateDir = (templateDir, destinationDir) => {
     console.log(chalk`{keyword('green') Creating} {bold.keyword('green') template} {keyword('green') directory...}`);
 
-    return gulp.src('*.*', { read: false }).pipe(gulp.dest(`${destinationDir}/templates`));
+    return new Promise((resolve) => {
+        fs.mkdir(`${destinationDir}/templates`, () => {
+            resolve();
+        });
+    });
 };
 
 const copyFile = (srcFile, destFile) => (templateDir, destinationDir) => {

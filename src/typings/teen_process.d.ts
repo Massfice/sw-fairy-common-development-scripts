@@ -26,4 +26,6 @@ declare module 'teen_process' {
 
         on: (event: Event, callback: Callback) => void;
     }
+
+    export function exec(command: string, args: string[], options: { shell: boolean; cwd: string }): Promise<void>;
 }
