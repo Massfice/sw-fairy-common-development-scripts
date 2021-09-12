@@ -1,5 +1,6 @@
 const Vinyl = require('vinyl');
 const gulp = require('gulp');
+const rename = require('gulp-rename');
 const chalk = require('chalk');
 
 const createJSONFile = (filename, destinationDir, obj) => {
@@ -57,4 +58,22 @@ const createTemplateDir = (templateDir, destinationDir) => {
     return gulp.src('*.*', { read: false }).pipe(gulp.dest(`${destinationDir}/templates`));
 };
 
-module.exports = [createRunConfig, createProjectConfig, createTemplateDir];
+const copyFile = (srcFile, destFile) => (templateDir, destinationDir) => {
+    console.log(
+        chalk`{keyword('green') Copying} {bold.keyword('green') ${srcFile}} {keyword('green') to} {bold.keyword('green') ${destFile}} {keyword('green') ...}`,
+    );
+
+    return gulp
+        .src(`${templateDir}/src/${srcFile}`)
+        .pipe(rename(destFile))
+        .pipe(gulp.dest(`${destinationDir}`));
+};
+
+module.exports = [
+    createRunConfig,
+    createProjectConfig,
+    createTemplateDir,
+    copyFile('gulpfile.dest.d.ts', 'gulpfile.d.ts'),
+    copyFile('gulpfile.dest.js', 'gulpfile.js'),
+    copyFile('gulpfile.dest.js.map', 'gulpfile.js.map'),
+];
