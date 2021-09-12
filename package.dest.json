@@ -2,33 +2,15 @@
     "name": "@massfice/sw-fairy-common-development-scripts",
     "version": "1.0.2",
     "description": "Common package for developing system. Using typescript, teen_process, gulp, etc.",
-    "main": "src/gulpfile.ts",
-    "publishConfig": {
-        "access": "public"
-    },
-    "bin": {
-        "sw-fairy-dev": "./templates/sw-fairy-dev/src/src/cli.js"
-    },
+    "main": "src/gulpfile.js",
     "scripts": {
-        "build": "tsc --build ts.config.json",
-        "lint": "eslint src/**/*.ts",
-        "format": "eslint src/**/*.ts --fix",
-        "husky:init": "husky install && husky add .husky/pre-commit 'npm run lint'",
-        "prepare": "npm run build"
+        "start": "echo 'Start';"
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Massfice/sw-fairy-common-development-scripts.git"
     },
-    "keywords": [
-        "gulp",
-        "shinobi",
-        "war",
-        "fairy",
-        "common",
-        "development",
-        "scripts"
-    ],
+    "keywords": ["gulp", "shinobi", "war", "fairy", "common", "development", "scripts"],
     "bugs": {
         "url": "https://github.com/Massfice/sw-fairy-common-development-scripts/issues"
     },

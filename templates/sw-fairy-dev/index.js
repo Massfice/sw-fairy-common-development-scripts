@@ -81,4 +81,5 @@ module.exports = [
     copyFile('gulpfile.dest.d.ts', 'gulpfile.d.ts'),
     copyFile('gulpfile.dest.js', 'gulpfile.js'),
     copyFile('gulpfile.dest.js.map', 'gulpfile.js.map'),
+    copyFile('package.dest.json', 'package.json'),
 ];
