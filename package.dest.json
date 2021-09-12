@@ -1,6 +1,6 @@
 {
     "name": "@massfice/sw-fairy-common-development-scripts",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Common package for developing system. Using typescript, teen_process, gulp, etc.",
     "main": "src/gulpfile.js",
     "scripts": {
