@@ -13,7 +13,8 @@
         "build": "tsc --build ts.config.json",
         "lint": "eslint src/**/*.ts",
         "format": "eslint src/**/*.ts --fix",
-        "husky:init": "husky install && husky add .husky/pre-commit 'npm run lint'"
+        "husky:init": "husky install && husky add .husky/pre-commit 'npm run lint'",
+        "prepare": "npm run build"
     },
     "repository": {
         "type": "git",
