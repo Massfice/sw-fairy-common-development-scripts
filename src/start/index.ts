@@ -59,8 +59,9 @@ const stopApp = (name: string, style: Style, subProcess: SubProcess): Promise<vo
 const runConfigPath = path.join(__dirname, '..', '..', 'run.config.json');
 
 const start = async (mode = 'default'): Promise<void> => {
-    let prevRunConfig: RunConfig = { apps: [] };
+    let prevRunConfig: RunConfig = { apps: [], environment: {} };
     let subProcesses: { name: string; process: SubProcess }[] = [];
+    let port: number;
     const ports: { [appName: string]: number } = {};
 
     const start = async () => {
@@ -70,10 +71,20 @@ const start = async (mode = 'default'): Promise<void> => {
             throw new Error('Something went wrong');
         }
 
-        let port = config.project[mode].port;
+        if (!port) {
+            port = config.project[mode].port;
+        }
 
         config.run.apps.forEach((app) => {
-            app.port = ports[app.name] || port;
+            const appPort = ports[app.name];
+
+            if (appPort) {
+                app.port = appPort;
+
+                return;
+            }
+
+            app.port = port;
             ports[app.name] = app.port;
 
             port++;
@@ -82,29 +93,38 @@ const start = async (mode = 'default'): Promise<void> => {
         const difference = calculateDifference(prevRunConfig, config.run as RunConfig);
 
         for (const subProcess of subProcesses) {
-            if (
-                difference.modified
-                    .map((app) => app.name)
-                    .concat(difference.removed)
-                    .includes(subProcess.name)
-            ) {
-                const app = config.run.apps.find((app) => app.name === subProcess.name);
+            const modifiedOrRemovedNames = difference.modified.map((app) => app.name).concat(difference.removed);
 
-                const style = app && app.style ? app.style : {};
+            if (modifiedOrRemovedNames.includes(subProcess.name)) {
+                const app =
+                    prevRunConfig.apps.find((app) => app.name === subProcess.name) ||
+                    config.run.apps.find((app) => app.name === subProcess.name);
 
-                await stopApp(subProcess.name, style, subProcess.process);
+                if (!app) {
+                    throw new Error('Something went wrong!');
+                }
+
+                subProcesses = subProcesses.filter((subProcess) => {
+                    return subProcess.name !== app.name;
+                });
+
+                await stopApp(subProcess.name, app.style || {}, subProcess.process);
             }
         }
 
-        subProcesses = await Promise.all(
-            difference.added.concat(difference.modified).map((app) => {
-                if (!config.run || !config.run.apps) {
-                    throw new Error('No apps specified');
-                }
+        subProcesses = subProcesses.concat(
+            await Promise.all(
+                difference.added.concat(difference.modified).map((app) => {
+                    if (!config.run || !config.run.apps) {
+                        throw new Error('No apps specified');
+                    }
 
-                return exec(app, config.project as ProjectConfig, mode, config.run.apps);
-            }),
+                    return exec(app, config.project as ProjectConfig, mode, config.run.apps);
+                }),
+            ),
         );
+
+        console.log(subProcesses.map((subProcess) => subProcess.name));
 
         prevRunConfig = config.run;
     };

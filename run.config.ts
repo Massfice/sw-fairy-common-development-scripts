@@ -18,4 +18,5 @@ export interface App {
 
 export interface RunConfig {
     apps: App[];
+    environment: { [mode: string]: { [env: string]: string | number } };
 }
