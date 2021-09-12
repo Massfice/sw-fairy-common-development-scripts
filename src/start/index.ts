@@ -18,7 +18,7 @@ type Difference = {
     removed: string[];
 };
 
-const calculateDifference = (prevRunConfig: RunConfig, runConfig: RunConfig): Difference => {
+const calculateDifference = (prevRunConfig: RunConfig, runConfig: RunConfig, mode: string): Difference => {
     const prevRunConfigNames = prevRunConfig.apps.map((app) => app.name);
     const runConfigNames = runConfig.apps.map((app) => app.name);
 
@@ -36,7 +36,13 @@ const calculateDifference = (prevRunConfig: RunConfig, runConfig: RunConfig): Di
                 return false;
             }
 
-            return !deepEqual(app, prevApp, { strict: true });
+            return (
+                !deepEqual(
+                    { ...app, style: {}, environment: { ...app.environment[mode] } },
+                    { ...prevApp, style: {}, environment: { ...prevApp.environment[mode] } },
+                    { strict: true },
+                ) || !deepEqual(runConfig.environment[mode], prevRunConfig.environment[mode])
+            );
         });
 
     return {
@@ -90,7 +96,7 @@ const start = async (mode = 'default'): Promise<void> => {
             port++;
         });
 
-        const difference = calculateDifference(prevRunConfig, config.run as RunConfig);
+        const difference = calculateDifference(prevRunConfig, config.run as RunConfig, mode);
 
         for (const subProcess of subProcesses) {
             const modifiedOrRemovedNames = difference.modified.map((app) => app.name).concat(difference.removed);
@@ -129,8 +135,6 @@ const start = async (mode = 'default'): Promise<void> => {
                 }),
             ),
         );
-
-        console.log(subProcesses.map((subProcess) => subProcess.name));
 
         prevRunConfig = config.run;
     };
