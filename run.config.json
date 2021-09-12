@@ -1,5 +1,5 @@
 {
-    "environment": {},
+    "environment": { "default": { "GLOBAL": "GLOBAL" }, "custom": { "GLOBAL": "CUSTOM GLOBAL" } },
     "apps": [
         {
             "name": "App1",

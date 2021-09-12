@@ -25,6 +25,7 @@ export const exec = async (
     config: ProjectConfig,
     mode: string,
     apps: App[],
+    globalEnvironment: { [env: string]: string | number },
 ): Promise<{ name: string; process: SubProcess }> => {
     const resolverPath = path.relative(__dirname, path.join(rootPath, app.resolverPath));
     const resolver = await loadResolver(resolverPath);
@@ -33,7 +34,17 @@ export const exec = async (
         throw new Error('Something went wrong');
     }
 
-    const { command, environment = {} } = resolver(app.name, app.port, app.environment[mode], mode, apps);
+    //app.name, app.port, app.environment[mode], mode, apps
+
+    const { command, environment = {} } = resolver({
+        name: app.name,
+        port: app.port,
+        environment: app.environment[mode],
+        globalEnvironment,
+        mode,
+        apps,
+        projectConfig: config,
+    });
 
     if (!command || command.length === 0) {
         throw new Error('Command not specified');

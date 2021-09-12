@@ -119,7 +119,13 @@ const start = async (mode = 'default'): Promise<void> => {
                         throw new Error('No apps specified');
                     }
 
-                    return exec(app, config.project as ProjectConfig, mode, config.run.apps);
+                    return exec(
+                        app,
+                        config.project as ProjectConfig,
+                        mode,
+                        config.run.apps,
+                        config.run.environment[mode],
+                    );
                 }),
             ),
         );
