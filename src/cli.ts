@@ -1,24 +1,22 @@
 import path from 'path';
-import gulp from 'gulp';
+
+import spawn from './spawn';
 
 const cli = () => {
     const callerDir = process.cwd();
-    const cliDir = __dirname;
-    const callerRelativeDir = path.relative(cliDir, callerDir);
 
-    const dist = process.argv[2];
+    const destination = process.argv[2];
 
-    if (!dist) {
+    if (!destination) {
         throw new Error('Dist not specified');
     }
 
-    const distDir = path.join(callerRelativeDir, dist);
+    const destinationDir = path.join(callerDir, destination);
+    const templateDir = path.join(__dirname, '..', 'templates', 'sample');
 
-    gulp.series(async (): Promise<void> => {
-        console.log({ callerDir, cliDir, callerRelativeDir, distDir });
-    })(() => {
-        console.log('Done');
-    });
+    const done = () => console.log('Done');
+
+    spawn({ destinationDir, templateDir })(done);
 };
 
 cli();
