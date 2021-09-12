@@ -61,6 +61,7 @@ const runConfigPath = path.join(__dirname, '..', '..', 'run.config.json');
 const start = async (mode = 'default'): Promise<void> => {
     let prevRunConfig: RunConfig = { apps: [] };
     let subProcesses: { name: string; process: SubProcess }[] = [];
+    const ports: { [appName: string]: number } = {};
 
     const start = async () => {
         const config = await ConfigLoader.init();
@@ -68,6 +69,15 @@ const start = async (mode = 'default'): Promise<void> => {
         if (!config.project || !config.run) {
             throw new Error('Something went wrong');
         }
+
+        let port = config.project[mode].port;
+
+        config.run.apps.forEach((app) => {
+            app.port = ports[app.name] || port;
+            ports[app.name] = app.port;
+
+            port++;
+        });
 
         const difference = calculateDifference(prevRunConfig, config.run as RunConfig);
 
@@ -88,7 +98,11 @@ const start = async (mode = 'default'): Promise<void> => {
 
         subProcesses = await Promise.all(
             difference.added.concat(difference.modified).map((app) => {
-                return exec(app, config.project as ProjectConfig, mode);
+                if (!config.run || !config.run.apps) {
+                    throw new Error('No apps specified');
+                }
+
+                return exec(app, config.project as ProjectConfig, mode, config.run.apps);
             }),
         );
 

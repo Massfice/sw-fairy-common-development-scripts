@@ -20,26 +20,20 @@ enum Event {
 
 const rootPath = path.join(__dirname, '..', '..');
 
-let appPort: number;
-const appPorts: { [name: string]: number } = {};
-
 export const exec = async (
     app: App,
     config: ProjectConfig,
     mode: string,
+    apps: App[],
 ): Promise<{ name: string; process: SubProcess }> => {
-    if (!appPort) {
-        appPort = config[mode].port;
-    }
-
     const resolverPath = path.relative(__dirname, path.join(rootPath, app.resolverPath));
     const resolver = await loadResolver(resolverPath);
 
-    const providedPort = appPorts[app.name] || appPort;
+    if (!app.port) {
+        throw new Error('Something went wrong');
+    }
 
-    const { command, environment = {} } = resolver(app.name, providedPort, app.environment[mode]);
-
-    appPorts[app.name] = providedPort;
+    const { command, environment = {} } = resolver(app.name, app.port, app.environment[mode], mode, apps);
 
     if (!command || command.length === 0) {
         throw new Error('Command not specified');
@@ -54,8 +48,6 @@ export const exec = async (
     subProcess.on(Event['stream-line'], (line: string) => {
         console.log(`${styler('[', app.name, app.style ? app.style : {}, ']')} ${line}`);
     });
-
-    appPort++;
 
     console.log(styler('Starting', app.name, app.style ? app.style : {}));
     await subProcess.start();

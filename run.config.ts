@@ -13,6 +13,7 @@ export interface App {
     dir: string;
     resolverPath: string;
     style?: Style;
+    port?: number;
 }
 
 export interface RunConfig {
