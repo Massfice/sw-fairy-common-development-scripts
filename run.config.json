@@ -1,0 +1,89 @@
+{
+    "environment": { "default": { "GLOBAL": "GLOBAL" }, "custom": { "GLOBAL": "CUSTOM GLOBAL" } },
+    "apps": [
+        {
+            "name": "App1",
+            "environment": { "default": { "TEST": "App1" }, "custom": { "TEST": "Custom App1" } },
+            "dir": "./sample",
+            "resolverPath": "./sample/resolver",
+            "style": {
+                "bold": true,
+                "italic": true,
+                "underline": true,
+                "strikethrough": true,
+                "color": "red",
+                "bg": "gray"
+            }
+        },
+        {
+            "name": "App2",
+            "environment": { "default": { "TEST": "App2" }, "custom": { "TEST": "Custom App2" } },
+            "dir": "./sample",
+            "resolverPath": "./sample/resolver",
+            "style": {
+                "bold": true,
+                "italic": true,
+                "underline": true,
+                "strikethrough": true,
+                "color": "yellow",
+                "bg": "gray"
+            }
+        },
+        {
+            "name": "App3",
+            "environment": { "default": { "TEST": "App3" }, "custom": { "TEST": "Custom App3" } },
+            "dir": "./sample",
+            "resolverPath": "./sample/resolver",
+            "style": {
+                "bold": true,
+                "italic": true,
+                "underline": true,
+                "strikethrough": true,
+                "color": "orange",
+                "bg": "gray"
+            }
+        },
+        {
+            "name": "App4",
+            "environment": { "default": { "TEST": "App4" }, "custom": { "TEST": "Custom App4" } },
+            "dir": "./sample",
+            "resolverPath": "./sample/resolver",
+            "style": {
+                "bold": true,
+                "italic": true,
+                "underline": true,
+                "strikethrough": true,
+                "color": "green",
+                "bg": "gray"
+            }
+        },
+        {
+            "name": "App5",
+            "environment": { "default": { "TEST": "App5" }, "custom": { "TEST": "Custom App5" } },
+            "dir": "./sample",
+            "resolverPath": "./sample/resolver",
+            "style": {
+                "bold": true,
+                "italic": true,
+                "underline": true,
+                "strikethrough": true,
+                "color": "blue",
+                "bg": "gray"
+            }
+        },
+        {
+            "name": "App6",
+            "environment": { "default": { "TEST": "App6" }, "custom": { "TEST": "Custom App6" } },
+            "dir": "./sample",
+            "resolverPath": "./sample/resolver",
+            "style": {
+                "bold": true,
+                "italic": true,
+                "underline": true,
+                "strikethrough": true,
+                "color": "cyan",
+                "bg": "gray"
+            }
+        }
+    ]
+}

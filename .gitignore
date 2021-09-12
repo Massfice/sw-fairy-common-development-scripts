@@ -1,0 +1,7 @@
+node_modules
+templates/sw-fairy-dev/src
+yarn.lock
+.husky
+.env 
+.npmrc
+yarn-error.log

@@ -1,0 +1,8 @@
+{
+    "default": {
+        "port": 4000
+    },
+    "custom": {
+        "port": 5000
+    }
+}

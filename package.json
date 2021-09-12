@@ -1,0 +1,60 @@
+{
+    "name": "@massfice/sw-fairy-common-development-scripts",
+    "version": "1.0.0",
+    "description": "Common package for developing system. Using typescript, teen_process, gulp, etc.",
+    "main": "src/gulpfile.ts",
+    "bin": {
+        "sw-fairy-dev": "./templates/sw-fairy-dev/src/src/cli.js"
+    },
+    "scripts": {
+        "build": "tsc --build ts.config.json",
+        "lint": "eslint src/**/*.ts",
+        "format": "eslint src/**/*.ts --fix",
+        "husky:init": "husky install && husky add .husky/pre-commit 'npm run lint'"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Massfice/sw-fairy-common-development-scripts.git"
+    },
+    "keywords": [
+        "gulp",
+        "shinobi",
+        "war",
+        "fairy",
+        "common",
+        "development",
+        "scripts"
+    ],
+    "bugs": {
+        "url": "https://github.com/Massfice/sw-fairy-common-development-scripts/issues"
+    },
+    "homepage": "https://github.com/Massfice/sw-fairy-common-development-scripts#readme",
+    "author": "Massfice",
+    "license": "MIT",
+    "devDependencies": {
+        "@massfice/sw-fairy-common-deploy-scripts": "^1.3.2",
+        "@types/chalk": "^2.2.0",
+        "@types/deep-equal": "^1.0.1",
+        "@types/gulp": "^4.0.9",
+        "@types/gulp-rename": "^2.0.1",
+        "@types/vinyl": "^2.0.6",
+        "@types/yargs": "^17.0.2",
+        "@typescript-eslint/eslint-plugin": "^4.30.0",
+        "@typescript-eslint/parser": "^4.30.0",
+        "eslint": "^7.32.0",
+        "husky": "^7.0.2",
+        "prettier": "^2.3.2",
+        "ts-node": "^10.2.1",
+        "typescript": "^4.4.2"
+    },
+    "dependencies": {
+        "chalk": "^4.1.2",
+        "deep-equal": "^2.0.5",
+        "gulp": "^4.0.2",
+        "gulp-rename": "^2.0.0",
+        "teen_process": "^1.16.0",
+        "tree-kill": "^1.2.2",
+        "vinyl": "^2.2.1",
+        "yargs": "^17.1.1"
+    }
+}
